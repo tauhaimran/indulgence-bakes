@@ -53,17 +53,19 @@ export function Navbar() {
         <div className="flex flex-1 items-center justify-end gap-6">
           <nav className="hidden items-center gap-6 text-sm tracking-wide lg:flex">
             {links.map((link) => {
+              const href = link.label === "Menu" && pathname === "/" ? "#menu" : link.href;
               const active =
                 link.href === "/"
                   ? pathname === "/"
                   : pathname?.startsWith(link.href);
+              const isMenu = link.label === "Menu";
               return (
                 <Link
                   key={link.href}
-                  href={link.href}
+                  href={href}
                   className={`relative pb-1 font-sans text-xs uppercase tracking-[0.18em] ${
                     active ? "text-espresso" : "text-espresso/70"
-                  }`}
+                  } ${isMenu ? "rounded-full bg-gold/10 px-4 py-1 font-semibold text-gold" : ""}`}
                 >
                   {link.label}
                   {active && (
@@ -94,15 +96,17 @@ export function Navbar() {
         <div className="absolute inset-x-4 top-[4.25rem] z-30 rounded-3xl border border-espresso/10 bg-cream/95 px-4 py-4 shadow-subtle lg:hidden">
           <nav className="flex flex-col gap-3 text-sm">
             {links.map((link) => {
+              const href = link.label === "Menu" && pathname === "/" ? "#menu" : link.href;
               const active = pathname?.startsWith(link.href);
+              const isMenu = link.label === "Menu";
               return (
                 <Link
                   key={link.href}
-                  href={link.href}
+                  href={href}
                   onClick={() => setOpen(false)}
                   className={`flex items-center justify-between py-2 text-xs uppercase tracking-[0.18em] ${
                     active ? "text-espresso" : "text-espresso/70"
-                  }`}
+                  } ${isMenu ? "font-semibold text-gold" : ""}`}
                 >
                   <span>{link.label}</span>
                   {active && <span className="h-px w-8 bg-wheat" />}
