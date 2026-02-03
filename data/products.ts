@@ -19,7 +19,7 @@ export const products: Product[] = [
       "Rich chocolate loaf studded with toasted walnuts, creating the perfect balance of decadence and crunch.",
     price: 2200,
     category: "loaf",
-    image: "/products/chocolate-walnut-loaf.jpg",
+    image: "/products/chocolate-walnut-loaf1.jpg",
     highlight: "Pure chocolate bliss meets nutty perfection.",
   },
   {
