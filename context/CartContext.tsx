@@ -1,6 +1,6 @@
-\"use client\";
+"use client";
 
-import { createContext, useContext, useEffect, useMemo, useState } from \"react\";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 type CartItem = {
   id: string;
@@ -12,21 +12,21 @@ type CartItem = {
 type CartContextValue = {
   items: CartItem[];
   count: number;
-  addItem: (item: Omit<CartItem, \"quantity\">, quantity?: number) => void;
+  addItem: (item: Omit<CartItem, "quantity">, quantity?: number) => void;
   removeItem: (id: string) => void;
   clear: () => void;
 };
 
 const CartContext = createContext<CartContextValue | undefined>(undefined);
 
-const STORAGE_KEY = \"indulgence-cart-v1\";+
+const STORAGE_KEY = "indulgence-cart-v1";
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
 
   // hydrate from localStorage (demo)
   useEffect(() => {
-    if (typeof window === \"undefined\") return;
+    if (typeof window === "undefined") return;
     const raw = window.localStorage.getItem(STORAGE_KEY);
     if (raw) {
       try {
@@ -39,11 +39,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
-    if (typeof window === \"undefined\") return;
+    if (typeof window === "undefined") return;
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
   }, [items]);
 
-  const addItem = (item: Omit<CartItem, \"quantity\">, quantity = 1) => {
+  const addItem = (item: Omit<CartItem, "quantity">, quantity = 1) => {
     setItems((prev) => {
       const existing = prev.find((i) => i.id === item.id);
       if (existing) {
@@ -78,7 +78,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 export function useCart() {
   const ctx = useContext(CartContext);
   if (!ctx) {
-    throw new Error(\"useCart must be used within a CartProvider\");
+    throw new Error("useCart must be used within a CartProvider");
   }
   return ctx;
 }
