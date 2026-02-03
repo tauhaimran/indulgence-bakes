@@ -2,8 +2,11 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function AboutPage() {
+  const [errored, setErrored] = useState(false);
+
   return (
     <div className="pt-[5.5rem] pb-16">
       <section className="mx-auto max-w-6xl px-4 pt-10">
@@ -45,15 +48,28 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
-            className="relative mt-2 overflow-hidden rounded-3xl bg-taupe-soft shadow-subtle md:mt-0"
+            className="relative mt-2 overflow-hidden rounded-3xl bg-taupe-soft shadow-subtle md:mt-0 min-h-[220px] md:min-h-[320px]"
           >
-            <Image
-              src="/hands-baking.jpg"
-              alt="Hands dusted with flour over a wooden table"
-              fill
-              className="object-cover"
-              sizes="(min-width: 1024px) 40vw, 100vw"
-            />
+            {errored ? (
+              <div className="flex h-full w-full items-center justify-center bg-taupe-soft/60 p-4 text-center">
+                <div>
+                  <p className="text-sm font-medium text-espresso/80">Image unavailable</p>
+                  <p className="mt-1 text-xs text-espresso/60">Please add <code className="rounded bg-cream/90 px-1 py-0.5">/hands-baking.jpg</code> to <code className="rounded bg-cream/90 px-1 py-0.5">public/</code></p>
+                </div>
+              </div>
+            ) : (
+              <Image
+                src="/hands-baking.jpg"
+                alt="Hands dusted with flour over a wooden table"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                onError={() => {
+                  console.error("Failed to load /hands-baking.jpg");
+                  setErrored(true);
+                }}
+              />
+            )}
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-espresso/70 via-espresso/20 to-transparent p-5">
               <p className="text-[11px] font-sans uppercase tracking-[0.22em] text-cream/80">
                 Baked in small batches · Hand-finished, never rushed
