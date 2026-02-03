@@ -1,4 +1,5 @@
-import Image from "next/image";
+"use client";
+
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -7,182 +8,237 @@ export default function HomePage() {
     <div className="pt-[5.5rem]">
       {/* Hero */}
       <section className="relative isolate flex min-h-[calc(100vh-5.5rem)] items-center justify-center overflow-hidden bg-espresso">
-        <Image
-          src="/hero-bundt.jpg"
-          alt="Walnut bundt cake on a dark table"
-          fill
-          priority
-          className="object-cover opacity-70"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-espresso via-espresso/40 to-transparent" />
+        {/* Video Background */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover opacity-60"
+        >
+          <source src="/hero-video.mp4" type="video/mp4" />
+          <source src="/hero-video.webm" type="video/webm" />
+          {/* Fallback image if video doesn't load */}
+          <div className="absolute inset-0 bg-gradient-to-br from-espresso via-espresso/80 to-espresso" />
+        </video>
+        
+        {/* Overlay gradients for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-espresso via-espresso/60 to-espresso/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-espresso/80" />
 
-        <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center gap-10 px-4 py-16 text-center sm:items-start sm:text-left md:py-24">
+        {/* Centered Content */}
+        <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-8 px-4 py-20 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
-            className="max-w-xl"
+            transition={{ duration: 1, ease: [0.19, 1, 0.22, 1] }}
+            className="flex max-w-5xl flex-col items-center gap-6"
           >
-            <p className="mb-4 text-[11px] font-sans uppercase tracking-[0.22em] text-cream/70">
-              Home Baked · Small Batch · Lahore
-            </p>
-            <h1 className="font-display text-4xl tracking-tight text-cream sm:text-5xl md:text-6xl">
-              Refined Indulgence.
-            </h1>
-            <p className="mt-5 text-sm text-cream/80 sm:text-base">
-              Artisanal baking for the mature palate. Walnut cakes, slow coffee
-              pairings, and savory dishes that linger long after the last bite.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-sm font-sans uppercase tracking-[0.3em] text-gold sm:text-base"
+            >
+              HOME BAKED · SMALL BATCH · LAHORE
+            </motion.p>
+            
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.3 }}
+              className="font-display text-5xl font-bold leading-tight text-cream drop-shadow-2xl sm:text-6xl md:text-7xl lg:text-8xl"
+            >
+              CRAVE IT.
+              <br />
+              <span className="text-gold">BAKE IT.</span>
+              <br />
+              <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl">LOVE IT.</span>
+            </motion.h1>
+            
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="max-w-3xl text-lg font-medium leading-relaxed text-cream/95 sm:text-xl md:text-2xl"
+            >
+              Every bite is a moment of pure bliss. Handcrafted cakes that don't just taste incredible—they make you <span className="text-gold font-semibold">feel</span> incredible.
+            </motion.p>
+            
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="max-w-2xl text-base leading-relaxed text-cream/85 sm:text-lg"
+            >
+              From rich chocolate walnut loaves to elegant tiramisu and irresistible cupcakes—each creation is baked with passion, precision, and the kind of love that makes every slice unforgettable.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              className="mt-4 flex flex-col items-center gap-6 sm:flex-row sm:gap-4"
+            >
               <Link
                 href="/menu"
-                className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-wheat px-8 text-[11px] font-sans uppercase tracking-[0.22em] text-espresso shadow-subtle transition-colors hover:bg-wheat/90"
+                className="group relative inline-flex min-h-[64px] items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-gold via-caramel to-gold bg-[length:200%_100%] px-12 py-4 text-base font-bold uppercase tracking-wider text-espresso shadow-[0_8px_32px_rgba(232,184,109,0.4)] transition-all duration-500 hover:scale-105 hover:bg-[position:100%_0] hover:shadow-[0_12px_48px_rgba(232,184,109,0.6)] active:scale-95 sm:text-lg"
               >
-                Explore the Menu
+                <span className="relative z-10">ORDER YOUR CAKE NOW →</span>
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cream/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               </Link>
-              <span className="text-xs text-cream/70">
-                Thoughtful bakes, roasted walnuts, and coffee worth slowing
-                down for.
-              </span>
-            </div>
+              
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.9 }}
+                className="text-sm font-medium text-gold sm:text-base"
+              >
+                ✨ Fresh daily · Made with love · Delivered to your door
+              </motion.p>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Experience */}
-      <section className="bg-cream py-16 sm:py-24">
-        <div className="mx-auto grid max-w-6xl gap-12 px-4 md:grid-cols-[1.1fr,0.9fr] md:items-center">
+      {/* Why Choose Us */}
+      <section className="bg-gradient-to-b from-cream to-cream/95 py-20 sm:py-28">
+        <div className="mx-auto max-w-6xl px-4">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.7, ease: [0.19, 1, 0.22, 1] }}
+            className="text-center"
           >
-            <p className="text-[11px] font-sans uppercase tracking-[0.22em] text-espresso/60">
-              The Experience
+            <p className="text-sm font-sans uppercase tracking-[0.3em] text-gold sm:text-base">
+              WHY INDULGENCE BAKES?
             </p>
-            <h2 className="mt-3 font-display text-2xl text-espresso sm:text-3xl">
-              The quiet theatre of a warm kitchen.
+            <h2 className="mt-4 font-display text-4xl font-bold text-espresso sm:text-5xl md:text-6xl">
+              BECAUSE YOU DESERVE
+              <br />
+              <span className="text-caramel">SOMETHING EXTRAORDINARY</span>
             </h2>
-            <p className="mt-5 text-sm leading-relaxed text-espresso/80 sm:text-base">
-              Indulgence is a home bakery shaped by slow mornings and late
-              evenings. The kind where freshly ground coffee drifts through the
-              room, walnut cakes cool on a wire rack, and a single lamp pools
-              light over a wooden table.
-            </p>
-            <p className="mt-4 text-sm leading-relaxed text-espresso/80 sm:text-base">
-              Every loaf is baked in small batches, using hand-selected
-              ingredients and time as the main seasoning. Nothing rushed, nothing
-              loud—just considered flavours, balanced sweetness, and textures
-              that reward a second, slower bite.
+            <p className="mx-auto mt-6 max-w-3xl text-lg font-medium leading-relaxed text-espresso/80 sm:text-xl">
+              Every cake is a masterpiece. Every cupcake is a celebration. Every bite is crafted to make you feel like you're experiencing something truly special.
             </p>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
-            className="relative overflow-hidden rounded-3xl bg-taupe-soft shadow-subtle"
-          >
-            <div className="absolute inset-0 bg-gradient-to-tr from-espresso/10 via-transparent to-wheat/10" />
-            <div className="relative px-6 py-8 sm:px-8 sm:py-10">
-              <p className="text-[11px] font-sans uppercase tracking-[0.22em] text-espresso/70">
-                For the mature palate
-              </p>
-              <ul className="mt-4 space-y-3 text-sm text-espresso/85">
-                <li>• Bittersweet cocoa, not sugar-heavy frosting.</li>
-                <li>• Toasted nuts and spices layered with restraint.</li>
-                <li>• Bakes designed to sit beautifully beside coffee.</li>
-                <li>• Savory dishes that feel like a comforting evening in.</li>
-              </ul>
-            </div>
-          </motion.div>
+          <div className="mt-16 grid gap-8 md:grid-cols-3">
+            {[
+              {
+                title: "FRESH DAILY",
+                description: "Baked fresh every single day. No preservatives, no compromises—just pure, incredible flavor.",
+                emoji: "🔥",
+              },
+              {
+                title: "HANDCRAFTED",
+                description: "Each creation is made by hand with attention to detail that you can taste in every slice.",
+                emoji: "✨",
+              },
+              {
+                title: "MADE WITH LOVE",
+                description: "Passion isn't just an ingredient—it's the secret that makes our cakes unforgettable.",
+                emoji: "❤️",
+              },
+            ].map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="rounded-3xl bg-gradient-to-br from-cream to-taupe-soft/50 p-8 shadow-lg"
+              >
+                <div className="text-5xl mb-4">{feature.emoji}</div>
+                <h3 className="font-display text-xl font-bold text-espresso mb-3">
+                  {feature.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-espresso/75 sm:text-base">
+                  {feature.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Featured sweet vs savory */}
-      <section className="bg-cream pb-20">
-        <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 sm:gap-10">
-          <header className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="text-[11px] font-sans uppercase tracking-[0.22em] text-espresso/60">
-                Featured
-              </p>
-              <h2 className="mt-2 font-display text-2xl text-espresso sm:text-3xl">
-                Sweet vs. Savory
-              </h2>
-            </div>
-            <p className="max-w-md text-xs text-espresso/70 sm:text-sm">
-              A quiet dialogue between a zebra cake sliced for coffee, and a
-              slow-baked pasta dish that turns dinner into an occasion.
+      {/* Featured Products */}
+      <section className="bg-espresso py-20 sm:py-28">
+        <div className="mx-auto flex max-w-6xl flex-col gap-12 px-4">
+          <motion.header
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7 }}
+            className="text-center"
+          >
+            <p className="text-sm font-sans uppercase tracking-[0.3em] text-gold sm:text-base">
+              OUR SIGNATURE CREATIONS
             </p>
-          </header>
+            <h2 className="mt-4 font-display text-4xl font-bold text-cream sm:text-5xl md:text-6xl">
+              CAKES THAT MAKE
+              <br />
+              <span className="text-gold">MEMORIES</span>
+            </h2>
+            <p className="mx-auto mt-6 max-w-2xl text-lg text-cream/90 sm:text-xl">
+              From elegant bundt cakes to irresistible cupcakes and heavenly tiramisu—discover your next favorite indulgence.
+            </p>
+          </motion.header>
 
-          <div className="grid gap-6 md:grid-cols-2">
-            <motion.article
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.7, ease: [0.19, 1, 0.22, 1] }}
-              className="overflow-hidden rounded-3xl bg-cream shadow-subtle"
-            >
-              <div className="relative h-64 w-full overflow-hidden bg-taupe-soft">
-                <Image
-                  src="/marble-cake.jpg"
-                  alt="Zebra cake slices arranged beside a cup of coffee"
-                  fill
-                  className="object-cover"
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                />
-              </div>
-              <div className="px-5 py-6 sm:px-6 sm:py-7">
-                <p className="text-[11px] font-sans uppercase tracking-[0.22em] text-espresso/60">
-                  Sweet
+          <div className="grid gap-8 md:grid-cols-3">
+            {[
+              {
+                title: "BUNDT CAKES",
+                description: "Elegant, sophisticated, and absolutely divine. Perfect for celebrations or when you want to treat yourself.",
+                highlight: "Show-stopping beauty",
+              },
+              {
+                title: "LOAF CAKES",
+                description: "Comfort food elevated. Rich, moist, and perfect for sharing—or keeping all to yourself.",
+                highlight: "Everyday luxury",
+              },
+              {
+                title: "TIRAMISU & CUPCAKES",
+                description: "Italian perfection meets bite-sized bliss. Because sometimes you need a little bit of everything.",
+                highlight: "Pure joy",
+              },
+            ].map((product, index) => (
+              <motion.div
+                key={product.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="rounded-3xl bg-gradient-to-br from-espresso/80 to-espresso p-8 border-2 border-gold/20"
+              >
+                <p className="text-xs font-sans uppercase tracking-[0.2em] text-gold mb-2">
+                  {product.highlight}
                 </p>
-                <h3 className="mt-2 font-display text-xl text-espresso">
-                  Zebra Marble Cake
+                <h3 className="font-display text-2xl font-bold text-cream mb-4">
+                  {product.title}
                 </h3>
-                <p className="mt-3 text-sm text-espresso/80">
-                  Dark cocoa ribbons through vanilla bean batter, baked just
-                  long enough for the edges to turn caramel-gold. Best enjoyed
-                  with a slow, hot pour.
+                <p className="text-sm leading-relaxed text-cream/80 sm:text-base">
+                  {product.description}
                 </p>
-              </div>
-            </motion.article>
-
-            <motion.article
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
-              className="overflow-hidden rounded-3xl bg-cream shadow-subtle"
-            >
-              <div className="relative h-64 w-full overflow-hidden bg-taupe-soft">
-                <Image
-                  src="/savory-lasagna.jpg"
-                  alt="Savory baked pasta dish in a ceramic tray"
-                  fill
-                  className="object-cover"
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                />
-              </div>
-              <div className="px-5 py-6 sm:px-6 sm:py-7">
-                <p className="text-[11px] font-sans uppercase tracking-[0.22em] text-espresso/60">
-                  Savory
-                </p>
-                <h3 className="mt-2 font-display text-xl text-espresso">
-                  Oven-Rested Pasta
-                </h3>
-                <p className="mt-3 text-sm text-espresso/80">
-                  A slow-baked pasta dish with deeply reduced sauce and a
-                  blistered top layer. The kind of plate that asks you to sit,
-                  exhale, and stay awhile.
-                </p>
-              </div>
-            </motion.article>
+              </motion.div>
+            ))}
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mt-8"
+          >
+            <Link
+              href="/menu"
+              className="inline-flex min-h-[60px] items-center justify-center rounded-full bg-gradient-to-r from-gold via-caramel to-gold bg-[length:200%_100%] px-12 py-4 text-base font-bold uppercase tracking-wider text-espresso shadow-[0_8px_32px_rgba(232,184,109,0.4)] transition-all duration-500 hover:scale-105 hover:bg-[position:100%_0] hover:shadow-[0_12px_48px_rgba(232,184,109,0.6)]"
+            >
+              SEE FULL MENU →
+            </Link>
+          </motion.div>
         </div>
       </section>
     </div>

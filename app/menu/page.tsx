@@ -19,15 +19,18 @@ export default function MenuPage() {
       <section className="mx-auto max-w-6xl px-4 pt-10">
         <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-[11px] font-sans uppercase tracking-[0.22em] text-espresso/60">
-              The Menu
+            <p className="text-sm font-sans uppercase tracking-[0.3em] text-gold sm:text-base">
+              THE MENU
             </p>
-            <h1 className="mt-2 font-display text-3xl text-espresso sm:text-4xl">
-              Home Baked Selection
+            <h1 className="mt-2 font-display text-4xl font-bold text-espresso sm:text-5xl md:text-6xl">
+              YOUR NEXT
+              <br />
+              <span className="text-caramel">FAVORITE CAKE</span>
+              <br />
+              AWAITS
             </h1>
-            <p className="mt-3 max-w-md text-sm text-espresso/75">
-              Walnut-laced cakes, coffee companions, and a single savory dish
-              that feels like a warm, familiar evening.
+            <p className="mt-4 max-w-2xl text-base font-medium text-espresso/80 sm:text-lg">
+              From rich chocolate walnut loaves to elegant bundt cakes, heavenly tiramisu, and irresistible cupcakes—every creation is crafted to make your taste buds dance with joy.
             </p>
           </div>
         </header>
@@ -40,10 +43,10 @@ export default function MenuPage() {
               type="button"
               onClick={() => setActive(category.id)}
               className={cn(
-                "inline-flex min-h-[36px] items-center justify-center rounded-full border px-4 text-[11px] font-sans uppercase tracking-[0.2em] transition-colors",
+                "inline-flex min-h-[44px] items-center justify-center rounded-full border-2 px-6 text-xs font-bold uppercase tracking-[0.2em] transition-all",
                 active === category.id
-                  ? "border-espresso bg-espresso text-cream"
-                  : "border-espresso/20 bg-cream text-espresso/80 hover:bg-cream/80"
+                  ? "border-gold bg-gradient-to-r from-gold to-caramel text-espresso shadow-lg scale-105"
+                  : "border-espresso/20 bg-cream text-espresso/80 hover:border-gold/40 hover:bg-cream/90 hover:scale-105"
               )}
             >
               {category.label}

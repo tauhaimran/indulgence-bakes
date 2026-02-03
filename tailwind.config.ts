@@ -9,12 +9,14 @@ const config: Config = {
     extend: {
       colors: {
         cream: "#F9F5F0",
-        espresso: "#3E2723",
-        wheat: "#C6A87C",
+        espresso: "#2D1810",
+        wheat: "#D4A574",
         taupe: {
           DEFAULT: "#D4C4B5",
           soft: "#E3D5C6",
         },
+        gold: "#E8B86D",
+        caramel: "#C67D4A",
       },
       fontFamily: {
         display: ["var(--font-display)", "serif"],

@@ -1,0 +1,41 @@
+# Indulgence Bakes — based in Islamabad 🇵🇰
+
+# Node
+node_modules/
+
+# Next.js
+.next/
+out/
+build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
+
+# Env files
+.env
+.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor directories and files
+.vscode/
+.idea/
+*.sublime-workspace
+
+# TypeScript
+*.tsbuildinfo
+
+# Misc
+.pnp.*
+coverage/
