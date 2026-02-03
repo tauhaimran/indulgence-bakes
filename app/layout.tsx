@@ -21,6 +21,10 @@ export const metadata: Metadata = {
   title: "Indulgence — Home Baked Elegance",
   description:
     "Indulgence is a home bakery crafting refined walnut cakes, coffee pairings, and savory bakes for the mature palate.",
+  icons: {
+    icon: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({

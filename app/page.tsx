@@ -78,7 +78,7 @@ export default function HomePage() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.7 }}
-              className="mt-4 flex flex-col items-center gap-4 sm:flex-row sm:gap-4"
+              className="mt-6 flex flex-col items-center gap-4"
             >
               <Link
                 href="/menu"
@@ -88,18 +88,11 @@ export default function HomePage() {
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cream/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               </Link>
 
-              <Link
-                href="#menu"
-                className="inline-flex min-h-[54px] items-center justify-center rounded-full px-6 py-3 text-sm font-semibold uppercase tracking-wide bg-gold text-cream shadow-sm transition-transform hover:scale-105"
-              >
-                Explore Menu & Deals →
-              </Link>
-
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.9 }}
-                className="text-sm font-semibold text-gold/95 sm:text-base"
+                className="mt-2 text-sm font-semibold text-gold/95 sm:text-base text-center"
               >
                 Fresh daily · Made with love · Delivered to your door
               </motion.p>

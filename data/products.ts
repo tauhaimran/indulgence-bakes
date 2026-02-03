@@ -19,7 +19,7 @@ export const products: Product[] = [
       "Rich chocolate loaf studded with toasted walnuts, creating the perfect balance of decadence and crunch.",
     price: 2200,
     category: "loaf",
-    image: "/coffee-loaf.jpg",
+    image: "/products/chocolate-walnut-loaf.jpg",
     highlight: "Pure chocolate bliss meets nutty perfection.",
   },
   {
@@ -29,7 +29,7 @@ export const products: Product[] = [
       "Buttery crumb infused with espresso, folded with toasted walnuts, finished with a thin coffee glaze.",
     price: 2200,
     category: "loaf",
-    image: "/coffee-loaf.jpg",
+    image: "/products/coffee-walnut-loaf.jpg",
     highlight: "Your morning coffee's perfect companion.",
   },
   {
@@ -39,7 +39,7 @@ export const products: Product[] = [
       "Stunning marbled layers of rich chocolate and vanilla bean batter, creating a visual and flavor masterpiece.",
     price: 2100,
     category: "loaf",
-    image: "/marble-cake.jpg",
+    image: "/products/choc-vanilla-zebra-loaf.jpg",
     highlight: "A work of art you can eat.",
   },
   {
@@ -49,7 +49,7 @@ export const products: Product[] = [
       "Moist banana bread swirled with dark chocolate chunks, a match made in baking heaven.",
     price: 2000,
     category: "loaf",
-    image: "/banana-cake.jpg",
+    image: "/products/banana-chocolate-loaf.jpg",
     highlight: "Comfort food elevated to pure joy.",
   },
   {
@@ -59,7 +59,7 @@ export const products: Product[] = [
       "Classic banana bread, perfectly moist and naturally sweet, baked to golden perfection.",
     price: 1800,
     category: "loaf",
-    image: "/banana-cake.jpg",
+    image: "/products/banana-loaf.jpg",
     highlight: "Simple, perfect, unforgettable.",
   },
   {
@@ -69,7 +69,7 @@ export const products: Product[] = [
       "The perfect marriage of coffee and chocolate in one irresistible loaf, topped with a mocha glaze.",
     price: 2300,
     category: "loaf",
-    image: "/mocha-cake.jpg",
+    image: "/products/mocha-loaf.jpg",
     highlight: "Coffee meets chocolate. You meet happiness.",
   },
   // Bundt Cakes
@@ -80,7 +80,7 @@ export const products: Product[] = [
       "Elegant bundt cake infused with espresso and studded with toasted walnuts, finished with a coffee glaze.",
     price: 2400,
     category: "bundt",
-    image: "/walnut-cake.jpg",
+    image: "/products/coffee-walnut-bundt.jpg",
     highlight: "Sophisticated flavor in every slice.",
   },
   {
@@ -90,9 +90,10 @@ export const products: Product[] = [
       "Decadent chocolate bundt cake with toasted walnuts, creating a rich and satisfying treat.",
     price: 2400,
     category: "bundt",
-    image: "/walnut-cake.jpg",
+    image: "/products/chocolate-walnut-bundt.jpg",
     highlight: "Chocolate dreams come true.",
   },
+
   {
     id: "banana-chocolate-bundt",
     name: "Banana Chocolate Bundt",
@@ -100,7 +101,7 @@ export const products: Product[] = [
       "Moist banana bundt swirled with dark chocolate, a stunning centerpiece for any occasion.",
     price: 2300,
     category: "bundt",
-    image: "/banana-cake.jpg",
+    image: "/products/banana-chocolate-bundt.jpg",
     highlight: "Banana and chocolate, reimagined.",
   },
   {
@@ -110,7 +111,7 @@ export const products: Product[] = [
       "Classic banana bundt cake, beautifully shaped and perfectly moist, a timeless favorite.",
     price: 2100,
     category: "bundt",
-    image: "/banana-cake.jpg",
+    image: "/products/banana-bundt.jpg",
     highlight: "Elegance meets comfort.",
   },
   {
@@ -120,7 +121,7 @@ export const products: Product[] = [
       "Coffee and chocolate unite in this stunning bundt cake, finished with a rich mocha glaze.",
     price: 2500,
     category: "bundt",
-    image: "/mocha-cake.jpg",
+    image: "/products/mocha-bundt.jpg",
     highlight: "The ultimate coffee and chocolate experience.",
   },
   // Tiramisu
@@ -131,7 +132,7 @@ export const products: Product[] = [
       "Classic Italian tiramisu layered with espresso-soaked ladyfingers and velvety mascarpone cream.",
     price: 2800,
     category: "tiramisu",
-    image: "/tiramisu.jpg",
+    image: "/products/coffee-cream-tiramisu.jpg",
     highlight: "Italy's finest, made with love.",
   },
   {
@@ -141,7 +142,7 @@ export const products: Product[] = [
       "A decadent twist on the classic, featuring coffee and chocolate layers that melt in your mouth.",
     price: 3000,
     category: "tiramisu",
-    image: "/tiramisu.jpg",
+    image: "/products/mocha-tiramisu.jpg",
     highlight: "Coffee, chocolate, perfection.",
   },
   // Cupcakes
@@ -152,7 +153,7 @@ export const products: Product[] = [
       "Espresso-infused cupcake topped with silky coffee cream frosting, a perfect single-serving delight.",
     price: 450,
     category: "cupcake",
-    image: "/cupcake.jpg",
+    image: "/products/coffee-cream-cupcake.jpg",
     highlight: "Your daily dose of happiness.",
   },
   {
@@ -162,9 +163,10 @@ export const products: Product[] = [
       "Rich mocha cupcake with coffee and chocolate flavors, topped with mocha buttercream frosting.",
     price: 500,
     category: "cupcake",
-    image: "/cupcake.jpg",
+    image: "/products/mocha-cupcake.jpg",
     highlight: "Coffee and chocolate in perfect harmony.",
   },
+
   {
     id: "coffee-walnut-cupcake",
     name: "Coffee Walnut Cupcake",
@@ -172,7 +174,7 @@ export const products: Product[] = [
       "Espresso cupcake with toasted walnuts, finished with coffee glaze and walnut pieces.",
     price: 480,
     category: "cupcake",
-    image: "/cupcake.jpg",
+    image: "/products/coffee-walnut-cupcake.jpg",
     highlight: "Nutty, coffee-rich perfection.",
   },
   {
@@ -182,7 +184,7 @@ export const products: Product[] = [
       "Beautifully marbled chocolate and vanilla cupcake, a miniature work of art topped with swirl frosting.",
     price: 470,
     category: "cupcake",
-    image: "/cupcake.jpg",
+    image: "/products/choc-vanilla-zebra-cupcake.jpg",
     highlight: "Art you can't resist eating.",
   },
   {
@@ -192,7 +194,7 @@ export const products: Product[] = [
       "Moist banana cupcake with chocolate chunks, topped with chocolate cream frosting.",
     price: 450,
     category: "cupcake",
-    image: "/cupcake.jpg",
+    image: "/products/banana-chocolate-cupcake.jpg",
     highlight: "Comfort in cupcake form.",
   },
   {
@@ -202,7 +204,7 @@ export const products: Product[] = [
       "Classic banana cupcake, perfectly moist and naturally sweet, topped with cream cheese frosting.",
     price: 420,
     category: "cupcake",
-    image: "/cupcake.jpg",
+    image: "/products/banana-cupcake.jpg",
     highlight: "Simple perfection, one bite at a time.",
   },
 ];

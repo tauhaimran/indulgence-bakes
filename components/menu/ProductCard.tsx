@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { useCart } from "@/context/CartContext";
 import type { Product } from "@/data/products";
@@ -13,6 +14,7 @@ type Props = {
 
 export function ProductCard({ product, index = 0 }: Props) {
   const { addItem } = useCart();
+  const [imgErrored, setImgErrored] = useState(false);
 
   const handleAdd = () => {
     addItem({
@@ -38,13 +40,25 @@ export function ProductCard({ product, index = 0 }: Props) {
       }}
     >
       <div className="relative h-56 w-full overflow-hidden bg-taupe-soft">
+        {/** Simple fallback: try the product image, show a clean placeholder on error */}
         <Image
           src={product.image}
           alt={product.name}
+          onError={() => setImgErrored(true)}
           fill
-          className="object-cover transition-transform duration-[1600ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-[1.03]"
+          className={cn(
+            "object-cover transition-transform duration-[1600ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-[1.03]",
+            imgErrored ? "hidden" : ""
+          )}
           sizes="(min-width: 1024px) 25vw, (min-width: 768px) 40vw, 100vw"
         />
+
+        {imgErrored && (
+          <div className="flex h-full w-full items-center justify-center bg-cream p-4">
+            <span className="text-sm font-medium text-espresso/80">{product.name}</span>
+          </div>
+        )}
+
         {product.highlight && (
           <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-espresso/70 via-espresso/20 to-transparent p-4">
             <p className="text-[11px] font-sans uppercase tracking-[0.18em] text-cream/80">
