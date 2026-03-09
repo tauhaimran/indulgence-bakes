@@ -5,9 +5,12 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { blogs } from "@/data/blogs";
 import { notFound } from "next/navigation";
-import { BlogCTA } from "@/components/blog/BlogCTA";
 import { ShareBar } from "@/components/blog/ShareBar";
-import { FloatingRects } from "@/components/blog/FloatingRects";
+import { products } from "@/data/products";
+import { ProductCard } from "@/components/menu/ProductCard";
+import { BlogCard } from "@/components/blog/BlogCard";
+import { SocialLinks } from "@/components/blog/SocialLinks";
+import { BlogCTA } from "@/components/blog/BlogCTA";
 
 // Function to parse bold text
 function parseBold(text: string) {
@@ -86,8 +89,7 @@ export default function BlogPage({ params }: BlogPageProps) {
 
   return (
     <div className="pt-[5.5rem] pb-16">
-      <section className="mx-auto max-w-4xl px-4 pt-10 relative">
-        <FloatingRects />
+      <section className="mx-auto max-w-4xl px-4 pt-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -112,8 +114,29 @@ export default function BlogPage({ params }: BlogPageProps) {
           </div>
         </motion.div>
 
-        {/* marketing CTA */}
-        <BlogCTA />
+
+        {/* decorative image banner and coupon */}
+        <div className="grid grid-cols-2 gap-2 mb-12">
+          <Image
+            src={blog.image}
+            alt={blog.title}
+            width={600}
+            height={400}
+            className="object-cover rounded-2xl"
+          />
+          <Image
+            src={blog.image}
+            alt={blog.title}
+            width={600}
+            height={400}
+            className="object-cover rounded-2xl opacity-70"
+          />
+        </div>
+        <div className="relative mb-12 text-center">
+          <div className="inline-block bg-gold/90 text-espresso px-6 py-2 rounded-full text-sm font-bold shadow-lg">
+            🔒 Secret coupon: use <span className="underline">CAKE20</span> for 20% off
+          </div>
+        </div>
 
         {/* layout grid with image beside content */}
         <div className="grid gap-10 md:grid-cols-[1.1fr,0.9fr] md:items-start mb-12">
@@ -186,6 +209,40 @@ export default function BlogPage({ params }: BlogPageProps) {
             >
               ← Back to Blog
             </a>
+          </div>
+        </motion.div>
+
+        {/* suggestions section */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.19, 1, 0.22, 1] }}
+          className="mt-16 pt-12 border-t border-espresso/10"
+        >
+          <h3 className="font-display text-2xl text-espresso mb-6">
+            You might also like
+          </h3>
+          <div className="grid gap-6 md:grid-cols-2">
+            {blogs
+              .filter((b) => b.id !== blog.id)
+              .slice(0, 2)
+              .map((b) => (
+                <BlogCard key={b.id} blog={b} />
+              ))}
+          </div>
+
+          <h3 className="mt-12 font-display text-2xl text-espresso mb-6">
+            Or try one of our cakes
+          </h3>
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {products.slice(0, 3).map((p, idx) => (
+              <ProductCard key={p.id} product={p} index={idx} />
+            ))}
+          </div>
+
+          {/* follow socials */}
+          <div className="mt-12 flex justify-center">
+            <SocialLinks />
           </div>
         </motion.div>
       </section>
