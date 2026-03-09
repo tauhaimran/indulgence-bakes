@@ -3,6 +3,10 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { blogs } from "@/data/blogs";
+import { BlogCard } from "@/components/blog/BlogCard";
+import { products } from "@/data/products";
+import { ProductCard } from "@/components/menu/ProductCard";
 
 export default function AboutPage() {
   const [errored, setErrored] = useState(false);
@@ -77,6 +81,36 @@ export default function AboutPage() {
             </div>
           </motion.div>
         </div>
+      </section>
+
+      {/* suggestions at bottom */}
+      <section className="mx-auto max-w-6xl px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7, ease: [0.19, 1, 0.22, 1] }}
+          className="mt-16 pt-12 border-t border-espresso/10"
+        >
+          <h3 className="font-display text-2xl text-espresso mb-6">
+            You might also enjoy
+          </h3>
+          <div className="grid gap-6 md:grid-cols-2">
+            {/* blog cards */}
+            {blogs.slice(0, 2).map((b) => (
+              <BlogCard key={b.id} blog={b} />
+            ))}
+          </div>
+
+          <h3 className="mt-12 font-display text-2xl text-espresso mb-6">
+            And maybe a cake?
+          </h3>
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {products.slice(0, 3).map((p, idx) => (
+              <ProductCard key={p.id} product={p} index={idx} />
+            ))}
+          </div>
+        </motion.div>
       </section>
     </div>
   );

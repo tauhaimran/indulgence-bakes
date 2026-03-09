@@ -10,7 +10,8 @@ export function Footer() {
         <span className="font-sans text-cream/70">
           Home Baked Elegance · Crafted in Small Batches
         </span>
-        <div className="mt-2 sm:mt-0">
+        <div className="mt-2 sm:mt-0 flex flex-col items-center sm:items-end">
+          <span className="mb-1 text-[10px] uppercase tracking-[0.2em] text-cream/70">Follow us</span>
           <SocialLinks />
         </div>
       </div>

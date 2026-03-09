@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { VideoEmbed } from "@/components/VideoEmbed";
 
 export default function HomePage() {
   return (
@@ -98,6 +99,31 @@ export default function HomePage() {
               </motion.p>
             </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Ads section */}
+      <section className="py-16 sm:py-20">
+        <div className="mx-auto max-w-6xl px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, ease: [0.19, 1, 0.22, 1] }}
+            className="text-center mb-8"
+          >
+            <p className="text-sm font-sans uppercase tracking-[0.22em] text-gold sm:text-base font-semibold">
+              OUR ADS
+            </p>
+            <h2 className="mt-4 font-display text-3xl font-bold text-espresso sm:text-4xl">
+              SEE US IN ACTION
+            </h2>
+          </motion.div>
+
+          <div className="grid gap-8 md:grid-cols-2">
+            <VideoEmbed url="https://www.youtube.com/embed/CLdkYY27pyA" />
+            <VideoEmbed url="https://www.youtube.com/embed/ZHp2h8tjxaY" />
+          </div>
         </div>
       </section>
 

@@ -9,7 +9,7 @@ export function SocialLinks({ className = "" }: { className?: string }) {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Instagram"
-        className="text-espresso/70 hover:text-gold transition-colors"
+        className="text-cream/70 hover:text-gold transition-colors"
       >
         <Instagram className="h-6 w-6" />
       </Link>
@@ -19,17 +19,17 @@ export function SocialLinks({ className = "" }: { className?: string }) {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="YouTube"
-        className="text-espresso/70 hover:text-gold transition-colors"
+        className="text-cream/70 hover:text-gold transition-colors"
       >
         <Youtube className="h-6 w-6" />
       </Link>
 
       <Link
-        href="#"
+        href="https://facebook.com/indulgence.bake"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Facebook"
-        className="text-espresso/70 hover:text-gold transition-colors"
+        className="text-cream/70 hover:text-gold transition-colors"
       >
         <Facebook className="h-6 w-6" />
       </Link>

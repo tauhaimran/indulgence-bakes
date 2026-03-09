@@ -11,6 +11,7 @@ import { ProductCard } from "@/components/menu/ProductCard";
 import { BlogCard } from "@/components/blog/BlogCard";
 import { SocialLinks } from "@/components/blog/SocialLinks";
 import { BlogCTA } from "@/components/blog/BlogCTA";
+import { VideoEmbed } from "@/components/VideoEmbed";
 
 // Function to parse bold text
 function parseBold(text: string) {
@@ -40,10 +41,12 @@ export default function BlogPage({ params }: BlogPageProps) {
   if (!blog) {
     notFound();
   }
+  // 'blog' is guaranteed to exist after the check above
+  const b = blog; // use `b` for type-safe references
 
   // Split content into lines and process headings
   const renderContent = () => {
-    const lines = blog.content.trim().split("\n");
+    const lines = b.content.trim().split("\n");
     const elements: JSX.Element[] = [];
 
     lines.forEach((line, idx) => {
@@ -55,7 +58,7 @@ export default function BlogPage({ params }: BlogPageProps) {
         elements.push(
           <h1
             key={idx}
-            className="mt-8 mb-4 font-display text-2xl sm:text-3xl text-espresso"
+            className="mt-8 mb-4 font-display text-3xl sm:text-4xl text-espresso"
           >
             {parseBold(title)}
           </h1>
@@ -66,7 +69,7 @@ export default function BlogPage({ params }: BlogPageProps) {
         elements.push(
           <h2
             key={idx}
-            className="mt-6 mb-3 font-display text-lg sm:text-xl text-espresso"
+            className="mt-6 mb-3 font-display text-xl sm:text-2xl text-espresso"
           >
             {parseBold(title)}
           </h2>
@@ -74,7 +77,7 @@ export default function BlogPage({ params }: BlogPageProps) {
       } else if (trimmedLine.length > 0) {
         // Regular paragraph
         elements.push(
-          <p key={idx} className="mb-4 text-sm sm:text-base leading-relaxed text-espresso/80">
+          <p key={idx} className="mb-6 text-base sm:text-lg leading-relaxed text-espresso/80">
             {parseBold(trimmedLine)}
           </p>
         );
@@ -97,19 +100,19 @@ export default function BlogPage({ params }: BlogPageProps) {
           transition={{ duration: 0.7, ease: [0.19, 1, 0.22, 1] }}
           className="mb-8"
         >
-          {blog.category && (
+          {b.category && (
             <span className="inline-block mb-3 px-3 py-1 text-[11px] font-sans uppercase tracking-[0.22em] text-gold bg-gold/10 rounded-full">
-              {blog.category}
+              {b.category}
             </span>
           )}
           <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl text-espresso mb-4">
-            {blog.title}
+            {b.title}
           </h1>
           <div className="flex items-center gap-4 text-sm text-espresso/60">
-            <time>{blog.date}</time>
+            <time>{b.date}</time>
             <span className="w-1 h-1 bg-espresso/30 rounded-full" />
             <span>
-              {Math.ceil(blog.content.split(" ").length / 200)} min read
+              {Math.ceil(b.content.split(" ").length / 200)} min read
             </span>
           </div>
         </motion.div>
@@ -118,15 +121,15 @@ export default function BlogPage({ params }: BlogPageProps) {
         {/* decorative image banner and coupon */}
         <div className="grid grid-cols-2 gap-2 mb-12">
           <Image
-            src={blog.image}
-            alt={blog.title}
+            src={b.image}
+            alt={b.title}
             width={600}
             height={400}
             className="object-cover rounded-2xl"
           />
           <Image
-            src={blog.image}
-            alt={blog.title}
+            src={b.image}
+            alt={b.title}
             width={600}
             height={400}
             className="object-cover rounded-2xl opacity-70"
@@ -138,16 +141,54 @@ export default function BlogPage({ params }: BlogPageProps) {
           </div>
         </div>
 
-        {/* layout grid with image beside content */}
-        <div className="grid gap-10 md:grid-cols-[1.1fr,0.9fr] md:items-start mb-12">
-          <motion.article
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: [0.19, 1, 0.22, 1] }}
-            className="max-w-none"
-          >
+        {/* main content with sidebar */}
+        <div className="md:flex md:gap-10">
+          <article className="flex-1">
+            <img
+              src={b.image}
+              alt={b.title}
+              className="float-right w-full md:w-1/3 mb-6 ml-6 rounded-2xl object-cover"
+            />
             {renderContent()}
-          </motion.article>
+          </article>
+          <div className="clear-right" />
+
+          <aside className="mt-12 md:mt-0 md:w-80">
+            <div className="space-y-10">
+              <div>
+                <h4 className="font-display text-xl text-espresso mb-4">
+                  You might also like
+                </h4>
+                <div className="space-y-4">
+                  {blogs.filter((b2) => b2.id !== b.id).slice(0, 2).map((b2) => (
+                    <BlogCard key={b2.id} blog={b2} />
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h4 className="font-display text-xl text-espresso mb-4">
+                  Try a cake
+                </h4>
+                <div className="space-y-4">
+                  {products.slice(0, 3).map((p, idx) => (
+                    <ProductCard key={p.id} product={p} index={idx} />
+                  ))}
+                </div>
+              </div>
+
+              <div className="pt-6 border-t border-espresso/10">
+                <h4 className="font-display text-xl text-espresso mb-4">
+                  Our ads
+                </h4>
+                <VideoEmbed url="https://www.youtube.com/embed/CLdkYY27pyA" />
+                <p className="mt-2 text-xs text-espresso/60">Longer ad</p>
+                <VideoEmbed url="https://www.youtube.com/embed/ZHp2h8tjxaY" />
+                <p className="mt-2 text-xs text-espresso/60">Short ad</p>
+              </div>
+            </div>
+          </aside>
+        </div>
 
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -169,8 +210,8 @@ export default function BlogPage({ params }: BlogPageProps) {
             ) : (
               <>
                 <Image
-                  src={blog.image}
-                  alt={blog.title}
+                  src={b.image}
+                  alt={b.title}
                   fill
                   className="object-cover"
                   sizes="(min-width: 1024px) 40vw, 100vw"
@@ -180,8 +221,9 @@ export default function BlogPage({ params }: BlogPageProps) {
               </>
             )}
           </motion.div>
-        </div>
         {/* share button */}
+        {/* clear floating elements from article so subsequent sections span full width */}
+        <div className="clear-right" />
         <ShareBar />
 
         {/* repeat call-to-action for busy readers */}
@@ -200,7 +242,7 @@ export default function BlogPage({ params }: BlogPageProps) {
                 About This Post
               </p>
               <p className="text-sm text-espresso/70 max-w-xs">
-                {blog.excerpt}
+                {b.excerpt}
               </p>
             </div>
             <a
@@ -224,10 +266,10 @@ export default function BlogPage({ params }: BlogPageProps) {
           </h3>
           <div className="grid gap-6 md:grid-cols-2">
             {blogs
-              .filter((b) => b.id !== blog.id)
+              .filter((b2) => b2.id !== b.id)
               .slice(0, 2)
-              .map((b) => (
-                <BlogCard key={b.id} blog={b} />
+              .map((b2) => (
+                <BlogCard key={b2.id} blog={b2} />
               ))}
           </div>
 
