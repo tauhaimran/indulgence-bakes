@@ -5,6 +5,9 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { blogs } from "@/data/blogs";
 import { notFound } from "next/navigation";
+import { BlogCTA } from "@/components/blog/BlogCTA";
+import { ShareBar } from "@/components/blog/ShareBar";
+import { FloatingRects } from "@/components/blog/FloatingRects";
 
 // Function to parse bold text
 function parseBold(text: string) {
@@ -83,7 +86,8 @@ export default function BlogPage({ params }: BlogPageProps) {
 
   return (
     <div className="pt-[5.5rem] pb-16">
-      <section className="mx-auto max-w-4xl px-4 pt-10">
+      <section className="mx-auto max-w-4xl px-4 pt-10 relative">
+        <FloatingRects />
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -92,9 +96,9 @@ export default function BlogPage({ params }: BlogPageProps) {
           className="mb-8"
         >
           {blog.category && (
-            <p className="text-[11px] font-sans uppercase tracking-[0.22em] text-gold mb-3">
+            <span className="inline-block mb-3 px-3 py-1 text-[11px] font-sans uppercase tracking-[0.22em] text-gold bg-gold/10 rounded-full">
               {blog.category}
-            </p>
+            </span>
           )}
           <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl text-espresso mb-4">
             {blog.title}
@@ -108,45 +112,57 @@ export default function BlogPage({ params }: BlogPageProps) {
           </div>
         </motion.div>
 
-        {/* Featured Image */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
-          className="relative overflow-hidden rounded-3xl bg-taupe-soft shadow-subtle mb-12 min-h-[400px]"
-        >
-          {errored ? (
-            <div className="flex h-full w-full items-center justify-center bg-taupe-soft/60 p-4">
-              <div className="text-center">
-                <p className="text-sm font-medium text-espresso/80">
-                  Image unavailable
-                </p>
-                <p className="mt-1 text-xs text-espresso/60 max-w-xs">
-                  Add {blog.image} to public folder
-                </p>
-              </div>
-            </div>
-          ) : (
-            <Image
-              src={blog.image}
-              alt={blog.title}
-              fill
-              className="object-cover"
-              sizes="(min-width: 1024px) 60vw, 100vw"
-              onError={() => setErrored(true)}
-            />
-          )}
-        </motion.div>
+        {/* marketing CTA */}
+        <BlogCTA />
 
-        {/* Content */}
-        <motion.article
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: [0.19, 1, 0.22, 1] }}
-          className="max-w-none"
-        >
-          {renderContent()}
-        </motion.article>
+        {/* layout grid with image beside content */}
+        <div className="grid gap-10 md:grid-cols-[1.1fr,0.9fr] md:items-start mb-12">
+          <motion.article
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: [0.19, 1, 0.22, 1] }}
+            className="max-w-none"
+          >
+            {renderContent()}
+          </motion.article>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
+            className="relative overflow-hidden rounded-3xl bg-taupe-soft shadow-subtle h-72 md:h-full"
+          >
+            {errored ? (
+              <div className="flex h-full w-full items-center justify-center bg-taupe-soft/60 p-4">
+                <div className="text-center">
+                  <p className="text-sm font-medium text-espresso/80">
+                    Image unavailable
+                  </p>
+                  <p className="mt-1 text-xs text-espresso/60 max-w-xs">
+                    Add {blog.image} to public folder
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <>
+                <Image
+                  src={blog.image}
+                  alt={blog.title}
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  onError={() => setErrored(true)}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-espresso/70 via-espresso/20 to-transparent" />
+              </>
+            )}
+          </motion.div>
+        </div>
+        {/* share button */}
+        <ShareBar />
+
+        {/* repeat call-to-action for busy readers */}
+        <BlogCTA />
 
         {/* Footer Navigation */}
         <motion.div
